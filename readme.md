@@ -50,4 +50,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any questions or suggestions, please open an issue or contact us at [email@example.com](mailto:email@example.com).
+For any questions or suggestions, please open an issue or contact us at [taskmaster@gmail.com](mailto:keshav40353@gmail.com).
