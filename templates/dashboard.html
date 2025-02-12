@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskMaster Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="fas fa-tasks"></i>
+          <span>TaskMaster</span>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li>
+              <a href="#" class="active"
+                ><i class="fas fa-home"></i> Dashboard</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-calendar-alt"></i> Calendar</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+          <h1>Welcome Back, {{ user.username }}!</h1>
+          <div class="header-actions">
+            <button class="btn primary" id="addTaskButton">
+              <i class="fas fa-plus"></i> Add Task
+            </button>
+            <div class="user-profile">
+              <img
+                src="{{ url_for('static', filename='assets/user-avatar.jpg') }}"
+                alt="User Avatar"
+              />
+              <span>{{ user.username }}</span>
+            </div>
+            <!-- Add to the header for Dark Mode Toggle -->
+            <div class="theme-toggle">
+              <i class="fas fa-moon"></i>
+              <span>Dark Mode</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search tasks..." />
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Task Overview -->
+        <section class="task-overview">
+          <div class="overview-card">
+            <h3>Total Tasks</h3>
+            <p id="totalTasks">0</p>
+            <small>All tasks assigned</small>
+          </div>
+          <div class="overview-card">
+            <h3>Completed</h3>
+            <p id="completedTasks">0</p>
+            <small>Tasks completed</small>
+          </div>
+          <div class="overview-card">
+            <h3>Pending</h3>
+            <p id="pendingTasks">0</p>
+            <small>Tasks pending</small>
+          </div>
+          <div class="overview-card">
+            <h3>Overdue</h3>
+            <p id="overdueTasks">0</p>
+            <small>Tasks overdue</small>
+          </div>
+        </section>
+
+        <!-- Task List -->
+        <section class="task-list">
+          <h2>Your Tasks</h2>
+          <div class="task-filters">
+            <button class="btn secondary active" data-filter="all">All</button>
+            <button class="btn secondary" data-filter="pending">Pending</button>
+            <button class="btn secondary" data-filter="completed">
+              Completed
+            </button>
+            <button class="btn secondary" data-filter="overdue">Overdue</button>
+          </div>
+          <div class="tasks" id="taskList">
+            <!-- Tasks will be dynamically added here -->
+          </div>
+        </section>
+
+        <!-- Calendar and Progress Tracking -->
+        <section class="grid-section">
+          <section class="calendar">
+            <h2>Calendar</h2>
+            <div id="calendar">
+              <h1>COMING SOON</h1>
+            </div>
+          </section>
+          <section class="analytics">
+            <h2>Analytics</h2>
+            <div id="charts">
+              <h1>COMING SOON</h1>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <!-- Task Creation Modal -->
+    <div class="modal" id="taskModal">
+      <div class="modal-content">
+        <h2 id="modalTitle">Create New Task</h2>
+        <form id="taskForm">
+          <div class="form-group">
+            <label for="taskTitle">Task Title</label>
+            <input
+              type="text"
+              id="taskTitle"
+              placeholder="Enter task title"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="taskDueDate">Due Date</label>
+            <input type="date" id="taskDueDate" required />
+          </div>
+          <div class="form-group">
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskCategory">Category</label>
+            <select id="taskCategory" required>
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="shopping">Shopping</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskTags">Tags</label>
+            <input
+              type="text"
+              id="taskTags"
+              placeholder="Enter tags (comma separated)"
+            />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn secondary" onclick="closeModal()">
+              Cancel
+            </button>
+            <button type="submit" class="btn primary" id="submitButton">
+              Create Task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+  </body>
+</html>
