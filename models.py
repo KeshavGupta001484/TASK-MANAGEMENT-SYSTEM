@@ -34,7 +34,6 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password_hash, password)
 
     def update_profile(self, data):
-        """Update user profile with the provided data dictionary"""
         for key, value in data.items():
             if hasattr(self, key) and value is not None:
                 setattr(self, key, value)

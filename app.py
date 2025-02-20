@@ -6,7 +6,6 @@ from forms import TaskForm
 from models import db, User
 from werkzeug.utils import secure_filename
 from datetime import datetime
-# from admin import admin
 import os
 
 app = Flask(__name__)
@@ -16,9 +15,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "da
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "mysecretkey"
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-# Ensure upload folder exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 db = SQLAlchemy(app)
@@ -27,8 +25,6 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
-# app.register_blueprint(admin)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -44,7 +40,6 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password, password)
     
-# Define the Feedback model
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -91,26 +86,21 @@ def index():
 def about():
     return render_template("about.html")
 
-# Feedback route
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
     if request.method == 'POST':
-        # Retrieve data from the form
         name = request.form['name']
         email = request.form['email']
         message = request.form['message']
 
-        # Create a new Feedback entry
         new_feedback = Feedback(name=name, email=email, message=message)
 
-        # Add and commit the feedback to the database
         db.session.add(new_feedback)
         db.session.commit()
 
         flash("Thank you for your feedback!", "success")
-        return redirect(url_for("dashboard"))  # Redirect to avoid resubmission on refresh
+        return redirect(url_for("dashboard"))
 
-    # Render the feedback form if GET request
     return render_template('feedback.html')
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -156,8 +146,7 @@ def login():
 def dashboard():
     form = TaskForm()
     tasks = Task.query.filter_by(user_id=current_user.id).all()
-    
-    # Filter tasks based on query parameter
+
     filter_type = request.args.get('filter', 'all')
     if filter_type == 'pending':
         tasks = Task.query.filter_by(user_id=current_user.id, status='pending').all()
@@ -170,7 +159,6 @@ def dashboard():
             Task.status != 'completed'
         ).all()
 
-    # Calculate task statistics
     total_tasks = Task.query.filter_by(user_id=current_user.id).count()
     completed_tasks = Task.query.filter_by(user_id=current_user.id, status='completed').count()
     pending_tasks = Task.query.filter_by(user_id=current_user.id, status='pending').count()
@@ -283,11 +271,9 @@ def toggle_task(task_id):
 def profile():
     if request.method == 'POST':
         try:
-            # Print form data for debugging
             print("Form Data:", request.form)
             print("Files:", request.files)
 
-            # Handle profile picture upload
             if 'profile_picture' in request.files:
                 file = request.files['profile_picture']
                 if file and file.filename and allowed_file(file.filename):
@@ -297,7 +283,6 @@ def profile():
                     file.save(file_path)
                     current_user.profile_picture = os.path.join('uploads', filename)
 
-            # Check if new email already exists for another user
             new_email = request.form.get('email')
             if new_email != current_user.email:
                 existing_user = User.query.filter_by(email=new_email).first()
@@ -306,12 +291,10 @@ def profile():
                     return redirect(url_for('profile'))
                 current_user.email = new_email
 
-            # Update other user fields
             current_user.username = request.form.get('username')
             current_user.phone = request.form.get('phone')
             current_user.gender = request.form.get('gender')
-            
-            # Handle date of birth
+
             dob = request.form.get('dob')
             if dob:
                 try:
@@ -323,15 +306,12 @@ def profile():
             current_user.bio = request.form.get('bio')
             current_user.social = request.form.get('social')
 
-            # Update password if provided
             new_password = request.form.get('password')
             if new_password:
                 current_user.set_password(new_password)
 
-            # Print user object before commit for debugging
             print("User object before commit:", vars(current_user))
 
-            # Save changes
             db.session.commit()
 
             flash('Profile updated successfully!', 'success')
@@ -339,7 +319,7 @@ def profile():
 
         except Exception as e:
             db.session.rollback()
-            print(f"Error updating profile: {e}")  # Debug print
+            print(f"Error updating profile: {e}")
             flash(f'An error occurred: {str(e)}', 'error')
             return redirect(url_for('profile'))
 
