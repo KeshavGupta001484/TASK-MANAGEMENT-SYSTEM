@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #121212, #1c1c1c);
+            position: relative; /* Ensure the button is positioned relative to the body */
+        }
+        video {
+            width: 80%;
+            height: auto;
+        }
+        .home-button {
+            position: absolute; /* Position the button absolutely */
+            top: 20px; /* Distance from the top */
+            left: 20px; /* Distance from the left */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <a href="{{ url_for('index')}}" class="home-button">Home</a>
+
+    <!-- Video -->
+    <video src="{{ url_for('static', filename='assets/video.mp4') }}" controls></video>
+</body>
+</html>

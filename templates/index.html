@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="task management, productivity, collaboration, task scheduling"/>
+    <meta property="og:title" content="TaskMaster | Smart Task Management Solution"/>
+    <meta property="og:description" content="TaskMaster is a smart task management solution that helps you stay Organized"/>
+    <meta property="og:image"content="https://yourwebsite.com/assets/hero-dashboard.png"/>
+    <meta property="og:url" content="https://yourwebsite.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>TaskMaster | Smart Task Management Solution</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="nav-container">
+        <div class="logo">
+          <i class="fas fa-tasks"></i>
+          <span>TaskMaster</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <div class="auth-buttons">
+          <a href="{{ url_for('login') }}" class="btn login">Login</a>
+          <a href="{{ url_for('signup') }}" class="btn signup">Sign Up</a>
+        </div>
+        <button class="mobile-menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Master Your Tasks, Effortlessly</h1>
+          <p>
+            Stay ahead with a powerful, AI-driven task management system that
+            keeps you productive and organized.
+          </p>
+          <div class="cta-buttons">
+            <a href="{{ url_for('signup') }}" class="btn primary">Get Started for Free</a>
+            <a href="#features" class="btn secondary">Explore Features</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="{{ url_for('static', filename='assets/hero-dashboard.png') }}"
+            alt="TaskMaster Dashboard Preview"
+          />
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="features-container">
+          <h2>Everything You Need to Stay Organized</h2>
+          <p class="subheading">
+            Supercharge your productivity with powerful features designed for
+            seamless task management.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <h3>Task Scheduling</h3>
+              <p>
+                Effortlessly plan, prioritize, and automate your tasks with
+                recurring options.
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-bell"></i></div>
+              <h3>Smart Reminders</h3>
+              <p>
+                Stay on top of deadlines with AI-powered reminders tailored to
+                your workflow.
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-users"></i></div>
+              <h3>Team Collaboration</h3>
+              <p>
+                Share tasks, assign roles, and collaborate in real time with
+                your team.
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+              </div>
+              <h3>Cloud Sync</h3>
+              <p>
+                Access your tasks anytime, anywhere with seamless cloud
+                synchronization.
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+              <h3>Progress Tracking</h3>
+              <p>
+                Visualize your achievements with interactive charts and
+                performance reports.
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+              <h3>Custom Alerts</h3>
+              <p>
+                Set up personalized notifications to keep your workflow smooth
+                and efficient.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="how-it-works">
+        <h2>How TaskMaster Works</h2>
+        <p class="subheading">
+          Simple steps to boost your productivity and stay organized.
+        </p>
+        <div class="steps-container">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Create Your Account</h3>
+            <p>
+              Sign up in seconds and customize your workspace to fit your needs.
+            </p>
+            <div class="step-icon">
+              <i class="fas fa-user-plus"></i>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Add Your Tasks</h3>
+            <p>
+              Quickly input tasks, set deadlines, and organize them into
+              projects.
+            </p>
+            <div class="step-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Stay Productive</h3>
+            <p>
+              Track progress, collaborate with your team, and complete tasks
+              efficiently.
+            </p>
+            <div class="step-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="testimonials">
+        <h2>What Our Users Say</h2>
+        <p class="subheading">
+          Hear from our satisfied users who have transformed their productivity
+          with TaskMaster.
+        </p>
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <div class="testimonial-header">
+              <img src="{{ url_for('static',filename= 'assets/sarah.png') }}" alt="Sarah Johnson" />
+              <div class="testimonial-info">
+                <h4>Sarah Johnson</h4>
+                <span>Freelance Designer</span>
+              </div>
+            </div>
+            <p>
+              "TaskMaster has transformed how I manage my daily tasks. Highly
+              recommended!"
+            </p>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="testimonial-header">
+              <img src="{{ url_for('static',filename= 'assets/Mike.png') }}" alt="Mike Stevens" />
+              <div class="testimonial-info">
+                <h4>Mike Stevens</h4>
+                <span>Project Manager</span>
+              </div>
+            </div>
+            <p>
+              "Perfect for our team collaboration. We've increased productivity
+              by 40%."
+            </p>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <h2>Ready to Get Started?</h2>
+        <p>
+          Join thousands of users who trust TaskMaster for their task management
+          needs.
+        </p>
+        <div class="cta-buttons">
+          <a href="{{ url_for('signup') }}" class="btn primary">Start Free Trial</a>
+          <a href="{{ url_for('demo')}}" class="btn secondary">Watch Demo</a>
+        </div>
+      </section>
+
+      <section id="pricing" class="pricing">
+        <h2>Flexible Plans for Everyone</h2>
+        <p class="subheading">
+          Choose the plan that fits your needs and boost your productivity
+          today.
+        </p>
+        <div class="pricing-plans">
+          <div class="plan">
+            <h3>Free Plan</h3>
+            <p>Perfect for individuals getting started with task management.</p>
+            <span class="price">₹0<span>/month</span></span>
+            <ul class="features-list">
+              <li><i class="fas fa-check"></i> Up to 5 projects</li>
+              <li><i class="fas fa-check"></i> Basic task scheduling</li>
+              <li><i class="fas fa-check"></i> Reminders for deadlines</li>
+              <li><i class="fas fa-check"></i> Basic progress tracking</li>
+              <li><i class="fas fa-check"></i> Email notifications</li>
+              <li><i class="fas fa-times"></i> No collaboration features</li>
+              <li><i class="fas fa-times"></i> No cloud sync</li>
+            </ul>
+            <a href="{{ url_for('signup') }}" class="btn primary">Get Started</a>
+          </div>
+
+          <div class="plan premium">
+            <div class="popular-badge">Most Popular</div>
+            <h3>Premium Plan</h3>
+            <p>Advanced features for teams and professionals.</p>
+            <span class="price">₹149<span>/month</span></span>
+            <ul class="features-list">
+              <li><i class="fas fa-check"></i> Unlimited projects</li>
+              <li><i class="fas fa-check"></i> Advanced task scheduling</li>
+              <li><i class="fas fa-check"></i> Real-time collaboration</li>
+              <li><i class="fas fa-check"></i> Cloud sync across devices</li>
+              <li><i class="fas fa-check"></i> Priority support</li>
+              <li><i class="fas fa-check"></i> Customizable notifications</li>
+              <li><i class="fas fa-check"></i> Task dependencies</li>
+              <li><i class="fas fa-check"></i> Advanced progress tracking</li>
+            </ul>
+            <a href="{{ url_for('signup') }}" class="btn primary">Upgrade Now</a>
+          </div>
+
+          <div class="plan business">
+            <h3>Business Plan</h3>
+            <p>For teams and organizations needing advanced collaboration.</p>
+            <span class="price">₹399<span>/month</span></span>
+            <ul class="features-list">
+              <li><i class="fas fa-check"></i> Unlimited projects</li>
+              <li><i class="fas fa-check"></i> Advanced analytics</li>
+              <li><i class="fas fa-check"></i> Team collaboration tools</li>
+              <li><i class="fas fa-check"></i> Dedicated account manager</li>
+              <li><i class="fas fa-check"></i> 24/7 premium support</li>
+              <li><i class="fas fa-check"></i> Custom integrations</li>
+              <li><i class="fas fa-check"></i> Advanced security features</li>
+              <li><i class="fas fa-check"></i> Workflow automation</li>
+            </ul>
+            <a href="{{ url_for('signup') }}" class="btn primary">Contact Sales</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#press">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#guides">Guides</a></li>
+            <li><a href="#help">Help Center</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#security">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer-section social">
+          <h4>Connect With Us</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/task.master2025?igsh=MXI1eXN2eWFpY2hpZw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/keshav-gupta-751925324" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/share/17wK5DKFH3/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 TaskMaster. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
